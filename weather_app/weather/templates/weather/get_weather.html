@@ -1,0 +1,52 @@
+{% extends "weather/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Search{% endblock %}
+
+{% block body_block %}
+    <div = "container">
+    <!--<div class="page-header">-->
+        <h1>weather details</h1>
+    <!--</div>-->
+</div>
+   
+    <div class="coloum">
+
+       
+        <div class="panel panel-primary">
+        <div class="container">
+
+            <br/>
+            <form class="form inline" id="user_form" method="post" action=>
+                <h3>   enter the city</h3>
+                {% csrf_token %}
+                <!-- Display the search form elements here -->
+                <input class="form-control" type="text" size="50" name="query" value="" id="query" />
+                <input class="btn btn-primary" type="submit" name="submit" value="Search" />
+                <br />
+            </form>
+        
+            
+            <div class="panel">
+                {% if result_list %}
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Current Weather details</h3>
+                    <!-- Display search results in an ordered list -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            {% for result in result_list %}
+                                <div class="list-group-item">
+                                    <li><h4 class="list-group-item-heading">{{ result}}</h4></li>
+                                    <!--<p class="list-group-item-text">{{ result.summary }}</p>-->
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+ </div>
+</div>
+
+{% endblock %}
